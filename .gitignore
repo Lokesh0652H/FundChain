@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Builds & Outputs
+dist/
+*/dist/
+build/
+*/build/
+
+# Hardhat / Blockchain
+blockchain/artifacts/
+blockchain/cache/
+
+# Python / AI
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Environment variables
+# .env (keep example in repo)
+server/.env.local
+*.local
+
+# SQLite temporary journals
+*.db-journal
+*.db-shm
+*.db-wal
+
+# OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

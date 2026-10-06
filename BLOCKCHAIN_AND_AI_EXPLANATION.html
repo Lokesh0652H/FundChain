@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FundChain - Blockchain and AI Theory & System Architecture</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background-color: #f8fafc;
+    }
+    .container {
+      background: #ffffff;
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e2e8f0;
+    }
+    h1 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 12px; font-size: 28px; }
+    h2 { color: #0369a1; margin-top: 32px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 22px; }
+    h3 { color: #0f172a; margin-top: 24px; font-size: 18px; }
+    blockquote {
+      background: #f0fdf4;
+      border-left: 4px solid #10b981;
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+      color: #065f46;
+    }
+    code {
+      background: #f1f5f9;
+      color: #0284c7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    @media print {
+      body { background: white; margin: 0; padding: 0; }
+      .container { border: none; box-shadow: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <span class="badge">B.E. Major Project • Academic Defense Report</span>
+      <span style="font-size:12px; color:#64748b;">FundChain Architecture Reference</span>
+    </div>
+<h1>🏛️ FundChain: Role of Blockchain and AI in Public Fund Tracking</h1>
+<blockquote>**Project Title:** FundChain — Blockchain-Based Public Fund Tracking &amp; Transparency System</blockquote>
+<blockquote>**Tagline:** *&quot;Track Every Rupee. Verify Every Record.&quot;*</blockquote>
+<blockquote>**Academic Level:** Final-Year B.E. (Bachelor of Engineering) Major Project</blockquote>
+<blockquote>**Prepared For:** Project Guide / Professor / Viva Evaluation</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>📌 Quick Summary for Your Presentation (2-Minute Elevator Pitch)</h2>
+<blockquote>*&quot;Respected Ma&#x27;am / Sir,*</blockquote>
+<blockquote>*In traditional government projects, funds often leak or get delayed because transactions are stored in private, centralized databases that administrators can edit or delete, and nobody verifies if ground physical work matches the released money.*</blockquote>
+<p>&gt;</p>
+<blockquote>*In **FundChain**, we solve this using two cutting-edge technologies:*</blockquote>
+<blockquote>1. ***Blockchain (Ethereum / Solidity):*** *Acts as a tamper-proof digital notary. Once a rupee is allocated, approved, or paid to a contractor, that record is cryptographically signed and stored in immutable blocks. Nobody—not even an admin—can delete or alter it.*</blockquote>
+<blockquote>2. ***Artificial Intelligence (Python / Scikit-Learn Isolation Forest):*** *Acts as an automated audit watchdog. It continuously analyzes fund releases against real ground physical progress. If a contractor has received 78% of the funds but only completed 35% of the bridge, our AI immediately flags a neutral alert: **&#x27;Review Required — Financial progress is higher than reported physical progress&#x27;**, allowing state auditors to intervene before money is lost.&quot;*</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>📑 Table of Contents</h2>
+<p>1. [Where and How Blockchain is Used](#1-where-and-how-blockchain-is-used)</p>
+<li>[Core Problems Solved by Blockchain](#core-problems-solved-by-blockchain)</li>
+<li>[Smart Contract Architecture (`FundChain.sol`)](#smart-contract-architecture-fundchainsol)</li>
+<li>[Off-Chain Storage &amp; On-Chain Hash Fingerprints](#off-chain-storage--on-chain-hash-fingerprints)</li>
+<li>[Public Verification Explorer (`/verify`)](#public-verification-explorer-verify)</li>
+<p>2. [Where and How Artificial Intelligence (AI) is Used](#2-where-and-how-artificial-intelligence-ai-is-used)</p>
+<li>[Core Problems Solved by AI](#core-problems-solved-by-ai)</li>
+<li>[Isolation Forest Machine Learning Model](#isolation-forest-machine-learning-model)</li>
+<li>[The Multi-Parameter Feature Vector](#the-multi-parameter-feature-vector)</li>
+<li>[Deterministic Disparity Rules &amp; Neutral Audit Wording](#deterministic-disparity-rules--neutral-audit-wording)</li>
+<p>3. [The Synergy: How Blockchain and AI Work Together](#3-the-synergy-how-blockchain-and-ai-work-together)</p>
+<p>4. [Frequently Asked Questions (Viva Questions &amp; Exact Answers)](#4-frequently-asked-questions-viva-questions--exact-answers)</p>
+<p>5. [Code File References in the Project](#5-code-file-references-in-the-project)</p>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>1. Where and How Blockchain is Used</h2>
+<h3>Core Problems Solved by Blockchain</h3>
+<p>In existing government portals:</p>
+<li>Records can be changed or back-dated by database admins to cover up delays or unauthorized expenses.</li>
+<li>Citizens and auditors cannot mathematically prove whether an invoice was altered after submission.</li>
+<li>Centralized databases lack trust between independent bodies (Government Treasury, Public Works Department, Private Contractors, and the Public).</li>
+<h3>Smart Contract Architecture (`blockchain/contracts/FundChain.sol`)</h3>
+<p>Our smart contract is written in **Solidity ^0.8.20** and deployed to an Ethereum-compatible Proof-of-Authority (PoA) network at address:</p>
+<p>`0x5FbDB2315678afecb367f032d93F642f64180aa3`</p>
+<p>The smart contract governs the entire 7-step lifecycle:</p>
+<p>$$\text{Government} \longrightarrow \text{Department} \longrightarrow \text{Project} \longrightarrow \text{Contractor} \longrightarrow \text{Milestone} \longrightarrow \text{Expense} \longrightarrow \text{Blockchain}$$</p>
+<p>#### 8 Core Blockchain Functions:</p>
+<p>1. **`createProject(...)`**: Registers a new civic project with sanctioned budget, department code, and assigned contractor wallet. Emits `ProjectCreated` event.</p>
+<p>2. **`allocateFunds(...)`**: Treasury locks budgetary capital into the smart contract project escrow. Emits `FundsAllocated` event.</p>
+<p>3. **`createMilestone(...)`**: Defines physical stages (e.g., *Phase 1: Substructure 30%*, *Phase 2: Superstructure 40%*) with target amounts. Emits `MilestoneCreated` event.</p>
+<p>4. **`submitMilestoneEvidence(...)`**: Contractor submits proof of ground work along with an unalterable **SHA-256 cryptographic hash** of the site inspection report. Emits `MilestoneEvidenceSubmitted` event.</p>
+<p>5. **`approveMilestone(...)`**: Authorized Department Chief Engineer digitally signs that physical inspection is verified on-site. Emits `MilestoneApproved` event.</p>
+<p>6. **`releaseFunds(...)`**: Smart contract programmatically releases payment directly to the contractor’s wallet. **Non-reentrant modifier** protects against reentrancy attacks. Emits `FundsReleased` event.</p>
+<p>7. **`recordExpense(...)`**: Contractor logs itemized supplier expenses (cement, steel, labor) accompanied by the invoice&#x27;s SHA-256 hash. Emits `ExpenseRecorded` event.</p>
+<p>8. **`registerDocumentHash(...)`**: Seals Detailed Project Reports (DPR), tenders, and quality certificates on-chain. Emits `DocumentRegistered` event.</p>
+<h3>Off-Chain Storage &amp; On-Chain Hash Fingerprints</h3>
+<p>*Crucial viva concept to explain to your professor:*</p>
+<li>**We do NOT store heavy PDFs or videos directly on the blockchain**, because storing large files on-chain is prohibitively expensive in gas fees and slows the network.</li>
+<li>**Instead:**</li>
+<p>1. The actual document (PDF, site photo) is stored off-chain or on IPFS.</p>
+<p>2. A **SHA-256 cryptographic hash** (a 64-character unique digital fingerprint) is computed from the file.</p>
+<p>3. This hash is permanently recorded on the blockchain smart contract.</p>
+<p>4. If anyone tampers with even a single letter or rupee in the document, the hash changes, and the smart contract immediately rejects it as invalid.</p>
+<h3>Public Verification Explorer (`/verify`)</h3>
+<p>Anyone (citizen, journalist, or CAG auditor) can enter a transaction hash (`0x...`) and see:</p>
+<li>Block Number &amp; Timestamp</li>
+<li>Sender (Treasury / Department) and Receiver (Contractor Wallet)</li>
+<li>Disbursed Amount in ₹</li>
+<li>Event Type &amp; Consumed Gas Units</li>
+<li>Status: **`VERIFIED ON IMMUTABLE LEDGER`**</li>
+<li>Decoded raw smart contract state receipt</li>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>2. Where and How Artificial Intelligence (AI) is Used</h2>
+<h3>Core Problems Solved by AI</h3>
+<p>While Blockchain ensures records cannot be altered, **it does not automatically know if human officials are disbursing money too fast or colluding to approve milestones ahead of real physical progress.**</p>
+<p>With hundreds of public projects, human state auditors cannot monitor every transaction manually in real time. **AI acts as the automated surveillance auditor.**</p>
+<h3>Isolation Forest Machine Learning Model (`ai-service/detector.py`)</h3>
+<p>We implemented an unsupervised anomaly detection engine using **Python 3.12, Scikit-Learn, and FastAPI**:</p>
+<li>**Why Isolation Forest?**</li>
+<p>Unlike traditional supervised models that require thousands of labeled &quot;fraud&quot; examples (which governments rarely publish), **Isolation Forest** isolates anomalies based on the principle that unusual data points have shorter path lengths in randomized decision trees.</p>
+<h3>The Multi-Parameter Feature Vector</h3>
+<p>The model evaluates each project across 5 statistical dimensions:</p>
+<p>$$\vec{X} = \begin{bmatrix} \text{Financial Progress } \% \\ \text{Physical Progress } \% \\ \text{Budget Utilization Ratio} \\ \text{Expense-to-Allocated Ratio} \\ \text{Milestone Disbursement Velocity} \end{bmatrix}$$</p>
+<li>Baseline: Trained on benchmark distributions of 300 normal municipal infrastructure projects where physical progress closely tracks financial progress within a $\pm 15\%$ tolerance band.</li>
+<h3>Deterministic Disparity Rules &amp; Neutral Audit Wording</h3>
+<p>The AI service analyzes four critical patterns:</p>
+<p>1. **Physical vs. Financial Disparity (Core Requirement):**</p>
+<li>If a project has released **78.5%** of its capital, but ground engineers only report **35.0%** physical progress, the AI triggers:</li>
+<blockquote>**&quot;Review Required — Financial progress is higher than reported physical progress.&quot;**</blockquote>
+<p>2. **Single-Expense Outlier Spike:**</p>
+<li>Flags when a single disbursement to a single vendor represents $&gt;40\%$ of the entire allocated project capital.</li>
+<p>3. **Missing Ledger Evidence Proofs:**</p>
+<li>Flags when milestones are marked &quot;Approved&quot; without a verifiable SHA-256 evidence hash on the blockchain.</li>
+<p>4. **Expense Overrun:**</p>
+<li>Flags when recorded supplier expenses exceed total released tranches.</li>
+<h3>Ethical AI / Auditor Standard</h3>
+<p>*Important viva rule:*</p>
+<li>The AI **NEVER claims or writes that an anomaly is &quot;fraud&quot; or &quot;corruption&quot;**.</li>
+<li>It frames every flag objectively as **&quot;Review Required&quot;** or **&quot;Variance Advisory&quot;** for departmental inspection. This satisfies real-world legal and governmental audit compliance standards.</li>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>3. The Synergy: How Blockchain and AI Work Together</h2>
+<p>| Feature | Without Blockchain &amp; AI | With Blockchain Only | With Both: FundChain |</p>
+<p>|---|---|---|---|</p>
+<p>| **Data Integrity** | Vulnerable to admin alteration | Tamper-proof and immutable | Tamper-proof and immutable |</p>
+<p>| **Audit Speed** | Months/years after project ends | Instant cryptographic lookup | Instant real-time anomaly detection |</p>
+<p>| **Disparity Detection** | Discovered only after scam is exposed | Human must manually calculate math | **AI flags discrepancy within seconds** |</p>
+<p>| **Contractor Accountability** | Advance payments without ground proof | Milestone releases locked by code | Milestone releases locked + Hash verified |</p>
+<p>| **Public Trust** | Closed government portals | Open but technical for citizens | **Human-friendly citizen portal + GIS map** |</p>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>4. Frequently Asked Questions (Viva Questions &amp; Exact Answers)</h2>
+<h3>Q1: &quot;Why did you use Blockchain instead of a standard MySQL database with audit tables?&quot;</h3>
+<blockquote>**Answer:**</blockquote>
+<blockquote>*&quot;Ma&#x27;am, in a traditional MySQL or PostgreSQL database, a database administrator (DBA) or high-ranking government official with root access can run `UPDATE` or `DELETE` SQL queries to alter past expenditure records or back-date transactions.</blockquote>
+<blockquote>In FundChain, the financial disbursements and milestone approvals are executed on an Ethereum smart contract. Blockchain uses cryptographic hashing and append-only blocks, making it mathematically impossible for any administrator to erase or modify recorded expenditures.&quot;*</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h3>Q2: &quot;Do you store large engineering drawings or inspection photos directly on the blockchain?&quot;</h3>
+<blockquote>**Answer:**</blockquote>
+<blockquote>*&quot;No, Ma&#x27;am. Storing large binary files on a blockchain requires enormous gas fees and causes network bloat.</blockquote>
+<blockquote>Following industry best practices, we use an **Off-Chain Storage / On-Chain Hash Verification** architecture:</blockquote>
+<blockquote>The actual PDF or photo is stored off-chain (or IPFS), and we calculate its **SHA-256 hash**. Only the 64-character hash is registered on the smart contract. Anyone can verify the file at any time by re-hashing it against the on-chain ledger.&quot;*</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h3>Q3: &quot;Does your AI module directly accuse a contractor of fraud?&quot;</h3>
+<blockquote>**Answer:**</blockquote>
+<blockquote>*&quot;No, Ma&#x27;am. In professional government auditing (like the CAG of India), an algorithm cannot make legal accusations of fraud because legitimate delays—such as monsoon rain, land acquisition litigation, or bulk cement advance purchases—can temporarily cause financial progress to exceed physical progress.</blockquote>
+<blockquote>Therefore, our Scikit-Learn Isolation Forest module uses neutral audit wording: **&#x27;Review Required — Financial progress is higher than reported physical progress&#x27;**, ensuring that human auditors are alerted to inspect the site without making premature legal assumptions.&quot;*</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h3>Q4: &quot;What consensus mechanism and smart contract version did you use?&quot;</h3>
+<blockquote>**Answer:**</blockquote>
+<blockquote>*&quot;We wrote the smart contract in **Solidity version ^0.8.20** with OpenZeppelin reentrancy guard standards. For the network layer, we configured a **Proof of Authority (PoA)** Ethereum-compatible testnet. PoA is ideal for GovTech consortiums because validator nodes are operated by trusted government authorities (Finance Ministry, State Auditor, Public Works), providing sub-second block times and near-zero transaction costs.&quot;*</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h3>Q5: &quot;How does the citizen benefit if they don&#x27;t know blockchain?&quot;</h3>
+<blockquote>**Answer:**</blockquote>
+<blockquote>*&quot;Citizens don&#x27;t need MetaMask, crypto wallets, or private keys. Our frontend provides a clean, human-friendly UI with:</blockquote>
+<blockquote>1. An OpenStreetMap **GIS Map** showing projects pinned by district.</blockquote>
+<blockquote>2. An interactive **&#x27;Follow the Money&#x27;** visualizer that traces rupees from Treasury &amp;rarr; Department &amp;rarr; Contractor &amp;rarr; Milestone &amp;rarr; Expense.</blockquote>
+<blockquote>3. A one-click **Verify Transaction** explorer that translates complex blockchain blocks into clear human-readable audit receipts.&quot;*</blockquote>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<h2>5. Code File References in the Project</h2>
+<p>If your professor asks to see the exact code, open these files:</p>
+<p>1. **Smart Contract:**</p>
+<p>[`blockchain/contracts/FundChain.sol`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/blockchain/contracts/FundChain.sol)</p>
+<p>*(Contains the complete Solidity contract with `createProject`, `releaseFunds`, and event logs)*</p>
+<p>2. **AI Anomaly Detection Engine:**</p>
+<p>[`ai-service/detector.py`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/ai-service/detector.py)</p>
+<p>*(Contains the Scikit-Learn `IsolationForest` model and physical vs. financial disparity metrics)*</p>
+<p>3. **AI REST Microservice:**</p>
+<p>[`ai-service/main.py`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/ai-service/main.py)</p>
+<p>*(FastAPI microservice exposing `/analyze-project` and `/analyze-batch`)*</p>
+<p>4. **Blockchain Sync Service:**</p>
+<p>[`server/src/services/blockchainService.ts`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/server/src/services/blockchainService.ts)</p>
+<p>*(Ethers.js bridge syncing smart contract transactions with the database)*</p>
+<p>5. **Follow the Money Interactive Component:**</p>
+<p>[`client/src/components/FollowTheMoney.tsx`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/client/src/components/FollowTheMoney.tsx)</p>
+<p>*(7-step sequential fund tracker from Treasury to Supplier Invoice)*</p>
+<p>6. **On-Chain Verification Explorer:**</p>
+<p>[`client/src/pages/VerifyTransactionPage.tsx`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/client/src/pages/VerifyTransactionPage.tsx)</p>
+<p>*(Page where users enter any transaction hash to see proof of ledger integrity)*</p>
+<p>7. **Database Schema:**</p>
+<p>[`server/prisma/schema.prisma`](file:///C:/Users/Prajwal/.gemini/antigravity/scratch/fundchain/server/prisma/schema.prisma)</p>
+<p>*(Prisma schema with 12 models: Users, Projects, Milestones, Expenses, Documents, BlockchainTransactions, Anomalies)*</p>
+<hr style='border:0; border-top:1px solid #e2e8f0; margin:24px 0;'/>
+<p>*Academic Major Project Documentation &amp;bull; Bachelor of Engineering (B.E.) &amp;bull; Computer Science &amp;amp; Engineering*</p>
+
+  </div>
+</body>
+</html>

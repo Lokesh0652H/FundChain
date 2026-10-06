@@ -1,0 +1,217 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+
+model User {
+  id           String      @id @default(uuid())
+  email        String      @unique
+  name         String
+  passwordHash String
+  role         String      @default("CITIZEN") // GOVERNMENT, DEPARTMENT, CONTRACTOR, AUDITOR, CITIZEN
+  departmentId String?
+  contractorId String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  department   Department? @relation(fields: [departmentId], references: [id])
+  contractor   Contractor? @relation(fields: [contractorId], references: [id])
+  auditLogs    AuditLog[]
+}
+
+model Department {
+  id              String    @id @default(uuid())
+  code            String    @unique // e.g. PWD, HEALTH, EDU, WATER
+  name            String
+  description     String?
+  budgetAllocated Float     @default(0)
+  budgetSpent     Float     @default(0)
+  headName        String
+  contactEmail    String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  users           User[]
+  projects        Project[]
+}
+
+model Contractor {
+  id                 String    @id @default(uuid())
+  name               String
+  registrationNumber String    @unique
+  panNumber          String?
+  contactEmail       String
+  contactPhone       String?
+  rating             Float     @default(4.5)
+  walletAddress      String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  users              User[]
+  projects           Project[]
+}
+
+model Project {
+  id                     String                  @id @default(uuid())
+  code                   String                  @unique // e.g. FC-2026-PWD-001
+  title                  String
+  description            String
+  departmentId           String
+  contractorId           String?
+  totalBudget            Float
+  allocatedFunds         Float                   @default(0)
+  releasedFunds          Float                   @default(0)
+  expenditure            Float                   @default(0)
+  physicalProgress       Float                   @default(0) // Percentage 0-100
+  financialProgress      Float                   @default(0) // Percentage 0-100
+  status                 String                  @default("Active") // Proposed, Approved, Active, Delayed, Completed
+  sector                 String                  @default("Infrastructure") // Roads, Schools, Hospitals, Water, Infrastructure
+  locationAddress        String
+  district               String
+  state                  String                  @default("Karnataka")
+  locationLat            Float
+  locationLng            Float
+  startDate              DateTime                @default(now())
+  targetCompletionDate   DateTime
+  aiReviewStatus         String                  @default("Normal") // Normal, Review Required, High Risk
+  aiReviewReason         String?
+  smartContractProjectId Int?                    @unique
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+
+  department             Department              @relation(fields: [departmentId], references: [id])
+  contractor             Contractor?             @relation(fields: [contractorId], references: [id])
+  fundAllocations        FundAllocation[]
+  milestones             Milestone[]
+  fundReleases           FundRelease[]
+  expenses               Expense[]
+  documents              Document[]
+  blockchainTransactions BlockchainTransaction[]
+  anomalies              Anomaly[]
+}
+
+model FundAllocation {
+  id               String   @id @default(uuid())
+  projectId        String
+  amount           Float
+  financialYear    String   @default("2025-2026")
+  orderNumber      String
+  allocatedDate    DateTime @default(now())
+  authorizedBy     String
+  blockchainTxHash String?
+  project          Project  @relation(fields: [projectId], references: [id])
+}
+
+model Milestone {
+  id                  String        @id @default(uuid())
+  projectId           String
+  sequence            Int
+  title               String
+  description         String
+  targetAmount        Float
+  physicalWeightage   Float         @default(25) // e.g. 25% of overall project
+  status              String        @default("Pending") // Pending, InProgress, Submitted, Approved, FundsReleased
+  evidenceDescription String?
+  evidenceDocHash     String?
+  submittedAt         DateTime?
+  approvedAt          DateTime?
+  approvedBy          String?
+  project             Project       @relation(fields: [projectId], references: [id])
+  fundReleases        FundRelease[]
+  expenses            Expense[]
+}
+
+model FundRelease {
+  id               String    @id @default(uuid())
+  projectId        String
+  milestoneId      String?
+  amount           Float
+  releaseDate      DateTime  @default(now())
+  authorizedBy     String
+  recipientAddress String?
+  blockchainTxHash String?
+  blockNumber      Int?
+  status           String    @default("Released") // Pending, Released, Verified
+  project          Project   @relation(fields: [projectId], references: [id])
+  milestone        Milestone? @relation(fields: [milestoneId], references: [id])
+}
+
+model Expense {
+  id               String     @id @default(uuid())
+  projectId        String
+  milestoneId      String?
+  vendorName       String
+  amount           Float
+  category         String     // Material, Labor, Machinery, Inspection, Subcontract
+  invoiceNumber    String
+  invoiceDate      DateTime   @default(now())
+  invoiceDocHash   String
+  blockchainTxHash String?
+  blockNumber      Int?
+  status           String     @default("Recorded") // Recorded, Verified, Flagged
+  project          Project    @relation(fields: [projectId], references: [id])
+  milestone        Milestone? @relation(fields: [milestoneId], references: [id])
+}
+
+model Document {
+  id               String   @id @default(uuid())
+  projectId        String
+  docType          String   // DPR, TenderOrder, MilestoneEvidence, AuditReport, SiteInspection
+  title            String
+  fileName         String
+  fileHash         String   // SHA-256 hash
+  fileSize         Int      @default(102400)
+  ipfsHash         String?  // e.g. QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco
+  uploadedBy       String
+  verifiedOnChain  Boolean  @default(true)
+  blockchainTxHash String?
+  blockNumber      Int?
+  createdAt        DateTime @default(now())
+  project          Project  @relation(fields: [projectId], references: [id])
+}
+
+model BlockchainTransaction {
+  id          String   @id @default(uuid())
+  txHash      String   @unique
+  blockNumber Int
+  timestamp   DateTime @default(now())
+  eventType   String   // ProjectCreated, FundsAllocated, MilestoneApproved, FundsReleased, ExpenseRecorded, DocumentRegistered
+  fromAddress String
+  toAddress   String
+  amount      Float    @default(0)
+  projectId   String?
+  status      String   @default("Confirmed") // Pending, Confirmed, Failed
+  gasUsed     Int      @default(42000)
+  rawData     String?
+  project     Project? @relation(fields: [projectId], references: [id])
+}
+
+model Anomaly {
+  id              String   @id @default(uuid())
+  projectId       String
+  anomalyType     String   // FinancialProgressDisparity, ExpenseSpike, VelocityVariance, DocumentMissing
+  severity        String   @default("Medium") // Low, Medium, High, Critical
+  description     String
+  confidenceScore Float    @default(0.85)
+  detectedAt      DateTime @default(now())
+  status          String   @default("Under Review") // Under Review, Resolved, Cleared
+  resolvedBy      String?
+  project         Project  @relation(fields: [projectId], references: [id])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  userName   String
+  userRole   String
+  action     String   // CREATE_PROJECT, RELEASE_FUNDS, APPROVE_MILESTONE, UPLOAD_DOCUMENT
+  entityType String
+  entityId   String
+  details    String
+  ipAddress  String?  @default("127.0.0.1")
+  timestamp  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id])
+}
